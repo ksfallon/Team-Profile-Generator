@@ -11,7 +11,10 @@
     const internQuestions = [
         {
             type: "input",
-            name: "office",
-            message: "Please enter InternIntern's school name:"
+            name: "school",
+            message: "Please enter Intern's school name:"
         },
     ]
+
+    // school --- getSchool()
+    // getRole() - overriden to return 'Intern'

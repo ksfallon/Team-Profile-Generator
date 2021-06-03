@@ -11,7 +11,10 @@
     const engineerQuestions = [
         {
             type: "input",
-            name: "office",
-            message: "Please enter Engineers's GitHub username:"
+            name: "github",
+            message: "Please enter Engineer's GitHub username:"
         },
     ]
+
+    // github --- getGitHub()
+    // getRole() - overriden to return 'Engineer'
