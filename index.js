@@ -7,6 +7,7 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Generate = require('./generateHtml');
 
+// create const for employee array - where all the functions will push to
 function writeToFile(fileName, data) {
     return fs.writeFileSync(path.join(fileName), data)
 }
@@ -14,7 +15,7 @@ function writeToFile(fileName, data) {
 // TODO: Create a function to initialize app
 function init() {
     inquirer
-.prompt(questions)
+// .prompt(questions) look at what john says here
 .then(answers =>  {
     writeToFile ('index.html', generateHtml({
         // uses spread operator to concat answers hash
