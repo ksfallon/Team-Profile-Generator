@@ -41,12 +41,14 @@ function buildManager () {
         const manager = new Manager(answers.name, answers.id, answers.email, answers.office)
         chooseTeamMember();
         // use manager class to make manager based on managerAnswers
+        // now send that information to engHTML.js
+        // need to call on function that places this information into the html from engHTML.js
     })
 }
+buildManager ()
 
 function chooseTeamMember () {
     inquirer.prompt([
-
     {
         type: "list",
         name: "job",
@@ -54,7 +56,14 @@ function chooseTeamMember () {
         choices: ["Engineer", "Intern", "I don't want to add anymore team members"]
     }
     ]).then(chooseAnswers => {
-
+        if (chooseAnswers === 'Engineer') {
+            return buildEngineer()
+        } else if (chooseAnswers === 'Intern') {
+            return buildIntern();
+        } else {
+        // here is where i need to call on the function that writes the file
+        // should it just be: return writeToFile()
+        }
     })
 }
 
@@ -118,12 +127,7 @@ function buildEngineer () {
             name: "github",
             message: "What is your engineer's GitHub username:"
         },
-        {
-            type: "list",
-            name: "job",
-            message: "Which type of team member would you like to add?",
-            choices: ["Engineer", "Intern", "I don't want to add anymore team members"]
-        },
+
     ]},
 
 function buildIntern () {
@@ -148,12 +152,6 @@ function buildIntern () {
             type: "input",
             name: "school",
             message: "What is your intern's school name:"
-        },
-        {
-            type: "list",
-            name: "job",
-            message: "Which type of team member would you like to add?",
-            choices: ["Engineer", "Intern", "I don't want to add anymore team members"]
         },
     ]
     
