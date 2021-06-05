@@ -39,7 +39,8 @@ const managerQuestions = [
 function buildManager () {
         inquirer.prompt(managerQuestions).then(managerAnswers => {
         const manager = new Manager(managerAnswers.name, managerAnswers.id, managerAnswers.email, managerAnswers.office)
-        
+        manager.role = new Manager().getRole();
+        addmanager(manager);
         chooseTeamMember();
         // use manager class to make manager based on managerAnswers
         // now send that information to engHTML.js
@@ -57,14 +58,20 @@ function chooseTeamMember () {
         choices: ["Engineer", "Intern", "I don't want to add anymore team members"]
     }
     ]).then(chooseAnswers => {
-        if (chooseAnswers === 'Engineer') {
-            return buildEngineer()
-        } else if (chooseAnswers === 'Intern') {
-            return buildIntern();
-        } else {
-        // here is where i need to call on the function that writes the file
-        // writeToFile ('index.html', whichFUNCTIONhere({ WHAT DO I PUT HERE??}))
-        console.log("You've successfully created your team page!")
+        // if (chooseAnswers === 'Engineer') {
+        //     return buildEngineer()
+        // } else if (chooseAnswers === 'Intern') {
+        //     return buildIntern();
+        // } else {
+        // // here is where i need to call on the function that writes the file
+        // // writeToFile ('index.html', whichFUNCTIONhere({ WHAT DO I PUT HERE??}))
+        // console.log("You've successfully created your team page!")
+        // }
+        switch (chooseAnswers.job) {
+            case "Engineer": buildEngineer(); break;
+            case "Intern": buildIntern(); break;
+            default: buildTeam();
+            // need make a build team that puts all of the HTML created into the index.html file
         }
     })
 }
