@@ -38,7 +38,8 @@ const managerQuestions = [
 ]
 function buildManager () {
         inquirer.prompt(managerQuestions).then(managerAnswers => {
-        const manager = new Manager(answers.name, answers.id, answers.email, answers.office)
+        const manager = new Manager(managerAnswers.name, managerAnswers.id, managerAnswers.email, managerAnswers.office)
+        
         chooseTeamMember();
         // use manager class to make manager based on managerAnswers
         // now send that information to engHTML.js
@@ -62,112 +63,72 @@ function chooseTeamMember () {
             return buildIntern();
         } else {
         // here is where i need to call on the function that writes the file
-        // should it just be: return writeToFile()
+        // writeToFile ('index.html', whichFUNCTIONhere({ WHAT DO I PUT HERE??}))
+        console.log("You've successfully created your team page!")
         }
     })
 }
 
+const engineerQuestions = [
+    {
+        type: "input",
+        name: "name",
+        message: "What is your engineer's name:"
+    },
 
-// TODO: Create a function to initialize app
-function init() {
-//     inquirer
-//     .prompt(
-// function buildManager () {
-//     [
-    
-//         {
-//             type: "input",
-//             name: "name",
-//             message: "What is the team manager's name:"
-//         },
-    
-//         {
-//             type: "input",
-//             name: "id",
-//             message: "What is the team manager's ID:"
-//         },
-//         {
-//             type: "input",
-//             name: "email",
-//             message: "What is the team manager's email address:"
-//         },
-//         {
-//             type: "input",
-//             name: "office",
-//             message: "What is the team manager's office number:"
-//         },
-//         {
-//             type: "list",
-//             name: "job",
-//             message: "Which type of team member would you like to add?",
-//             choices: ["Engineer", "Intern", "I don't want to add anymore team members"]
-//         },
-    
-//     ]},
-
+    {
+        type: "input",
+        name: "id",
+        message: "What is your engineer's ID:"
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "What is your engineer's email address:"
+    },
+    {
+        type: "input",
+        name: "github",
+        message: "What is your engineer's GitHub username:"
+    },
+]
 function buildEngineer () {
-    [{
-            type: "input",
-            name: "name",
-            message: "What is your engineer's name:"
-        },
+    inquirer.prompt(engineerQuestions).then(engineerAnswers => {
+        const engineer = new Engineer(engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.github)
+        chooseTeamMember();
     
-        {
-            type: "input",
-            name: "id",
-            message: "What is your engineer's ID:"
-        },
-        {
-            type: "input",
-            name: "email",
-            message: "What is your engineer's email address:"
-        },
-        {
-            type: "input",
-            name: "github",
-            message: "What is your engineer's GitHub username:"
-        },
+    })
+}
 
-    ]},
+const interQuestions = [
+    {
+        type: "input",
+        name: "name",
+        message: "What is your intern's name:"
+    },
 
+    {
+        type: "input",
+        name: "id",
+        message: "What is your intern's ID:"
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "What is your intern's email address:"
+    },
+    {
+        type: "input",
+        name: "school",
+        message: "What is your intern's school name:"
+    },
+]
 function buildIntern () {
-    [
-        {
-            type: "input",
-            name: "name",
-            message: "What is your intern's name:"
-        },
-    
-        {
-            type: "input",
-            name: "id",
-            message: "What is your intern's ID:"
-        },
-        {
-            type: "input",
-            name: "email",
-            message: "What is your intern's email address:"
-        },
-        {
-            type: "input",
-            name: "school",
-            message: "What is your intern's school name:"
-        },
-    ]
-    
+    inquirer.prompt(interQuestions).then(internAnswers => {
+        const intern = new Intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.school)
+    })
 }
 
-) 
-.then(answers =>  {
-    const manager = new Manager(answers.name, answers.id, answers.email, answers.office)
-    
-    writeToFile ('index.html', generateHtml({
-        // uses spread operator to concat answers hash
-        ...answers
-    }))
-    console.log("You've successfully created your team page!")
-})
-}
 
 // init()
 
