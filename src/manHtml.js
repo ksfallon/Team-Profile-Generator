@@ -1,3 +1,6 @@
+const Index = require('../index');
+
+
 function addManager (manager) {
           `<div class="card border border-dark shadow p-3 mb-5 bg-white rounded">
           <div class="card-body">

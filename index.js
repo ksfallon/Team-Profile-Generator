@@ -5,6 +5,10 @@ const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const managerHtml = require('./lib/managerHtml');
+const internHtml = require('./lib/internHtml');
+const engineerHtml = require('./lib/engineerHtml');
+
 // const Generate = require('./generateHtml');
 
 // create const for employee array - where all the functions will push to
@@ -42,11 +46,10 @@ function buildManager () {
         
         manager.role = new Manager().getRole();
     }).then( () => {
-        addmanager(manager)
+        managerHtml.addmanager(manager)
     }).then (() => {
         chooseTeamMember();
     })
-    // use manager class to make manager based on managerAnswers
     // now send that information to engHTML.js
     // need to call on function that places this information into the html from engHTML.js
 }
