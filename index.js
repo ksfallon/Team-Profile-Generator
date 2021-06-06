@@ -39,13 +39,16 @@ const managerQuestions = [
 function buildManager () {
         inquirer.prompt(managerQuestions).then(managerAnswers => {
         const manager = new Manager(managerAnswers.name, managerAnswers.id, managerAnswers.email, managerAnswers.office)
+        
         manager.role = new Manager().getRole();
-        addmanager(manager);
+    }).then( () => {
+        addmanager(manager)
+    }).then (() => {
         chooseTeamMember();
-        // use manager class to make manager based on managerAnswers
-        // now send that information to engHTML.js
-        // need to call on function that places this information into the html from engHTML.js
     })
+    // use manager class to make manager based on managerAnswers
+    // now send that information to engHTML.js
+    // need to call on function that places this information into the html from engHTML.js
 }
 buildManager ()
 
