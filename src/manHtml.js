@@ -26,6 +26,7 @@ function addManager (manager) {
         )
 }
 
+addManager()
 
         
         

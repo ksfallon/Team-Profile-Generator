@@ -8,7 +8,7 @@ const Intern = require('./lib/Intern');
 const managerHtml = require('./src/manHtml');
 const internHtml = require('./src/intHtml');
 const engineerHtml = require('./src/engHtml');
-// const indexHtml = require('./dist/index.html');
+const indexHtml = require('./lib/indexHtml');
 const employeeList = [];
 const managerQuestions = [
 
@@ -41,9 +41,10 @@ function pushManager () {
         console.log("This is the manager const", manager);
         employeeList.push(manager);
         console.log("Here is the employee list", employeeList);
-    }) 
+    })
     // .then (() => {
-        
+    // managerHtml.addManager(manager);
+    //fs.appendFile('./dist/team.html', mHTML, (err) => err ? console.log(err) : '')
     // })
     .then (() => {
         chooseTeamMember();
@@ -83,8 +84,8 @@ function chooseTeamMember () {
 }
 
 // function buildTeam() {
-//     writeToFile("./dist/index.html", addManager())
-//     return fs.writeFileSync(path.join("./dist/index.html"), addManager(), 
+//     writeToFile("./dist/indexTeam.html", addManager())
+//     return fs.writeFileSync(path.join("./dist/indexTeam.html"), addManager(), 
 //     ((err) => console.error(err)));
 // }
 
@@ -119,7 +120,7 @@ function pushEngineer () {
 
         employeeList.push(newEngineer);
         console.log("Here is the updated Employee List", employeeList);
-    
+   
     }).then (() => {
         chooseTeamMember();
     }).catch((err) => console.error(err));
