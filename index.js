@@ -5,21 +5,16 @@ const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-const managerHtml = require('./lib/managerHtml');
-const internHtml = require('./lib/internHtml');
-const engineerHtml = require('./lib/engineerHtml');
-
-// const Generate = require('./generateHtml');
-
-// create const for employee array - where all the functions will push to
-function writeToFile(fileName, data) {
-    return fs.writeFileSync(path.join(fileName), data)
-}
+const managerHtml = require('./src/manHtml');
+const internHtml = require('./src/intHtml');
+const engineerHtml = require('./src/engHtml');
+// const indexHtml = require('./dist/index.html');
+const employeeList = [];
 const managerQuestions = [
 
     {
         type: "input",
-        name: "name",
+        name: "fname",
         message: "What is the team manager's name:"
     },
 
@@ -40,20 +35,24 @@ const managerQuestions = [
     }
 
 ]
-function buildManager () {
+function pushManager () {
         inquirer.prompt(managerQuestions).then(managerAnswers => {
-        const manager = new Manager(managerAnswers.name, managerAnswers.id, managerAnswers.email, managerAnswers.office)
+        const manager = new Manager(managerAnswers.fname, managerAnswers.id, managerAnswers.email, managerAnswers.office)
+        console.log("This is the manager const", manager);
+        employeeList.push(manager);
+        console.log("Here is the employee list", employeeList);
+    }) 
+    // .then (() => {
         
-        manager.role = new Manager().getRole();
-    }).then( () => {
-        managerHtml.addmanager(manager)
-    }).then (() => {
+    // })
+    .then (() => {
         chooseTeamMember();
-    })
+    }).catch((err) => console.error(err));
     // now send that information to engHTML.js
     // need to call on function that places this information into the html from engHTML.js
 }
-buildManager ()
+
+pushManager ()
 
 function chooseTeamMember () {
     inquirer.prompt([
@@ -74,18 +73,26 @@ function chooseTeamMember () {
         // console.log("You've successfully created your team page!")
         // }
         switch (chooseAnswers.job) {
-            case "Engineer": buildEngineer(); break;
-            case "Intern": buildIntern(); break;
-            default: buildTeam();
+            case "Engineer": pushEngineer(); break;
+            case "Intern": pushIntern(); break;
+            default: "thank you!"
+            // default: buildTeam();
             // need make a build team that puts all of the HTML created into the index.html file
         }
     })
 }
 
+// function buildTeam() {
+//     writeToFile("./dist/index.html", addManager())
+//     return fs.writeFileSync(path.join("./dist/index.html"), addManager(), 
+//     ((err) => console.error(err)));
+// }
+
+
 const engineerQuestions = [
     {
         type: "input",
-        name: "name",
+        name: "fname",
         message: "What is your engineer's name:"
     },
 
@@ -105,18 +112,24 @@ const engineerQuestions = [
         message: "What is your engineer's GitHub username:"
     },
 ]
-function buildEngineer () {
+function pushEngineer () {
     inquirer.prompt(engineerQuestions).then(engineerAnswers => {
-        const engineer = new Engineer(engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.github)
-        chooseTeamMember();
+        const newEngineer = new Engineer(engineerAnswers.fname, engineerAnswers.id, engineerAnswers.email, engineerAnswers.github)
+        console.log("This is the new engineer", newEngineer);
+
+        employeeList.push(newEngineer);
+        console.log("Here is the updated Employee List", employeeList);
     
-    })
+    }).then (() => {
+        chooseTeamMember();
+    }).catch((err) => console.error(err));
 }
+
 
 const interQuestions = [
     {
         type: "input",
-        name: "name",
+        name: "fname",
         message: "What is your intern's name:"
     },
 
@@ -136,10 +149,17 @@ const interQuestions = [
         message: "What is your intern's school name:"
     },
 ]
-function buildIntern () {
+function pushIntern () {
     inquirer.prompt(interQuestions).then(internAnswers => {
-        const intern = new Intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.school)
-    })
+        const newIntern = new Intern(internAnswers.fname, internAnswers.id, internAnswers.email, internAnswers.school)
+        console.log("This is the new Intern", newIntern);
+
+        employeeList.push(newIntern);
+        console.log("Here is the updated Employee List", employeeList);
+
+    }).then (() => {
+        chooseTeamMember();
+    }).catch((err) => console.error(err));
 }
 
 
@@ -170,4 +190,3 @@ function buildIntern () {
 //     },
 
 // ]
-
