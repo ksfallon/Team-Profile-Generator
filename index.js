@@ -5,7 +5,7 @@ const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-const managerHtml = require('./src/manHtml');
+const addManager = require('./src/manHtml');
 const startHtml = require("./src/startHtml")
 const internHtml = require('./src/intHtml');
 const engineerHtml = require('./src/engHtml');
@@ -68,7 +68,7 @@ function pushManager () {
         console.log("This is the manager const", manager);
         // employeeList.push(manager);
         // console.log("Here is the employee list", employeeList);
-        writeToFile ("./dist/newTeam.html", addManager(manager))
+        writeToFile ("./dist/newTeam.html", addManager(manager));
     //  wmanagerHtml.addManager(manager);
     //fs.appendFile('./dist/team.html', mHTML, (err) => err ? console.log(err) : '')
     })
