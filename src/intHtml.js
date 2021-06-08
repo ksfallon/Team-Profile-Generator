@@ -6,27 +6,24 @@ const Intern = require('../lib/Intern')
 const Employee = require('../lib/Employee')
 
 
-function addIntern (value) {
-      console.log("Here is the const intern object", value);    
-      const newIntern =`<div class="card border border-dark shadow p-3 mb-5 bg-white rounded">
+function addIntern (data) {
+      console.log("Here is the const intern object", data);    
+      return`<div class="card border border-dark shadow p-3 mb-5 bg-white rounded ml-2 mr-2" style="max-width: 25rem;">
       <div class="card-body">
         <div class="card-title bg-info text-white p-3">
-          <h5>${value.getName()}</h5>
+          <h5>${data.getName()}</h5>
           <br>
-          <h5><i class="fas fa-award"></i> ${value.getRole()}</h5> 
+          <h5><i class="fas fa-award"></i> ${data.getRole()}</h5> 
         </div>
         <ul class="list-group list-group-flush text-center border border-dark">
-          <li class="list-group-item">ID: ${value.getId()}</li>
+          <li class="list-group-item">ID: ${data.getId()}</li>
           <li class="list-group-item">
-              <span>Email: <a href="${value.getEmail()}" target="_blank"class="card-link">${value.getEmail()}</a></span>
+              <span>Email: <a href="${data.getEmail()}" target="_blank"class="card-link">${data.getEmail()}</a></span>
           </li>
-          <li class="list-group-item"> School: ${value.getSchool()}</li>
+          <li class="list-group-item"> School: ${data.getSchool()}</li>
         </ul>
       </div>
     </div>`
-        fs.appendFile('../dist/newTeam.html', newIntern,
-        (err => console.error(err))
-        )
 }
 
-module.exports = addIntern
+module.exports = addIntern;

@@ -4,7 +4,7 @@ const inquirer = require('inquirer');
 const indexHtml = require('.././index');
 
 function beginHtml () {
-const beginHtml =
+return
 `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +20,5 @@ const beginHtml =
         <a class="navbar-brand text-white-50 text-center" href="#">My Team</a>
     </nav>
     <div class="card-group p-5" id = "add-cards">`
-
-    fs.writeFile("./dist/newTeam.html", beginHtml, (err) => console.error(err))
 }
 module.exports = beginHtml

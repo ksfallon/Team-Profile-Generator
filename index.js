@@ -6,9 +6,9 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const addManager = require('./src/manHtml');
-const startHtml = require("./src/startHtml")
-const internHtml = require('./src/intHtml');
-const engineerHtml = require('./src/engHtml');
+// const beginHtml = require("./src/startHtml")
+const addIntern = require('./src/intHtml');
+const addEngineer = require('./src/engHtml');
 const endHtml = require('./src/endHtml');
 const employeeList = [];
 
@@ -37,6 +37,7 @@ const managerQuestions = [
     }
 
 ]
+
 function writeToFile(fileName, data) {
     return fs.appendFileSync(path.join(fileName), data)
 }
@@ -51,11 +52,11 @@ const beginHtml =
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Team Page!!</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-white-50 bg-dark justify-content-center">
-        <a class="navbar-brand text-white-50 text-center" href="#">My Team</a>
+    <nav class="navbar navbar-expand-lg navbar-white-50 bg-dark p-5 justify-content-center p5">
+        <a class="navbar-brand text-white-50 text-center" href="#"><h1>My Team</h1></a>
     </nav>
     <div class="card-group p-5" id = "add-cards">`
     fs.writeFile("./dist/newTeam.html", beginHtml, (err) => console.error(err))
@@ -88,42 +89,15 @@ function chooseTeamMember () {
         choices: ["Engineer", "Intern", "I don't want to add anymore team members"]
     }
     ]).then(chooseAnswers => {
-        // if (chooseAnswers === 'Engineer') {
-        //     return buildEngineer()
-        // } else if (chooseAnswers === 'Intern') {
-        //     return buildIntern();
-        // } else {
-        // // here is where i need to call on the function that writes the file
-        // // writeToFile ('index.html', whichFUNCTIONhere({ WHAT DO I PUT HERE??}))
-        // console.log("You've successfully created your team page!")
-        // }
+
         switch (chooseAnswers.job) {
             case "Engineer": pushEngineer(); break;
             case "Intern": pushIntern(); break;
             // default: "thank you!"
-            default: buildTeam();
+            default: finalHTML();
             // need make a build team that puts all of the HTML created into the index.html file
         }
     })
-}
-
-function buildTeam() {
-    for (const value of employeeList) {
-        if (value === Manager) {
-            managerHtml.addManager(value);   
-        } 
-        else if (value === Engineer) {
-            engineerHtml.addEngineer(value);
-        } else if (value === Intern) {
-            internHtml.addIntern(value);
-        } 
-
-    }
-
-    finalHTML()
-    // writeToFile("./dist/indexTeam.html", addManager())
-    // return fs.writeFileSync(path.join("./dist/indexTeam.html"), addManager(), 
-    // ((err) => console.error(err)));
 }
 
 function finalHTML() {
@@ -139,14 +113,8 @@ fs.appendFile("./dist/newTeam.html", finishHtml, (err) => console.error(err))
 console.log("Your team HTML file is ready!")
 }
 
-
-
-// function finalHTML () {        
-//         fs.appendFile("./dist/newTeam.html", endHtml)
-//         console.log("Your team HTML file is ready!")
-//     }
-
 const engineerQuestions = [
+
     {
         type: "input",
         name: "fname",
@@ -169,18 +137,19 @@ const engineerQuestions = [
         message: "What is your engineer's GitHub username:"
     },
 ]
+
 function pushEngineer () {
     inquirer.prompt(engineerQuestions).then(engineerAnswers => {
-        const newEngineer = new Engineer(engineerAnswers.fname, engineerAnswers.id, engineerAnswers.email, engineerAnswers.github)
-        console.log("This is the new engineer", newEngineer);
+    const newEngineer = new Engineer (engineerAnswers.fname, engineerAnswers.id, engineerAnswers.email, engineerAnswers.github)
+    console.log("This is the newEngineer const", newEngineer);
 
-        employeeList.push(newEngineer);
-        console.log("Here is the updated Employee List", employeeList);
-
-    }).then (() => {
-        chooseTeamMember();
-    }).catch((err) => console.error(err));
+    writeToFile ("./dist/newTeam.html", addEngineer(newEngineer));
+})
+.then (() => {
+    chooseTeamMember();
+}).catch((err) => console.error(err));
 }
+
 
 
 const interQuestions = [
@@ -211,9 +180,10 @@ function pushIntern () {
         const newIntern = new Intern(internAnswers.fname, internAnswers.id, internAnswers.email, internAnswers.school)
         console.log("This is the new Intern", newIntern);
 
-        employeeList.push(newIntern);
-        console.log("Here is the updated Employee List", employeeList);
-
+        // employeeList.push(newIntern);
+        // console.log("Here is the updated Employee List", employeeList);
+        
+        writeToFile ("./dist/newTeam.html", addIntern(newIntern));
     }).then (() => {
         chooseTeamMember();
     }).catch((err) => console.error(err));
