@@ -9,8 +9,7 @@ const addManager = require('./src/manHtml');
 // const beginHtml = require("./src/startHtml")
 const addIntern = require('./src/intHtml');
 const addEngineer = require('./src/engHtml');
-const endHtml = require('./src/endHtml');
-const employeeList = [];
+// const finishHtml = require('./src/endHtml');
 
 const managerQuestions = [
 
@@ -67,17 +66,14 @@ function pushManager () {
         inquirer.prompt(managerQuestions).then(managerAnswers => {
         const manager = new Manager(managerAnswers.fname, managerAnswers.id, managerAnswers.email, managerAnswers.office)
         console.log("This is the manager const", manager);
-        // employeeList.push(manager);
-        // console.log("Here is the employee list", employeeList);
+
         writeToFile ("./dist/newTeam.html", addManager(manager));
-    //  wmanagerHtml.addManager(manager);
-    //fs.appendFile('./dist/team.html', mHTML, (err) => err ? console.log(err) : '')
+
     })
     .then (() => {
         chooseTeamMember();
     }).catch((err) => console.error(err));
-    // now send that information to engHTML.js
-    // need to call on function that places this information into the html from engHTML.js
+
 }
 
 function chooseTeamMember () {
@@ -150,8 +146,6 @@ function pushEngineer () {
 }).catch((err) => console.error(err));
 }
 
-
-
 const interQuestions = [
     {
         type: "input",
@@ -175,14 +169,12 @@ const interQuestions = [
         message: "What is your intern's school name:"
     },
 ]
+
 function pushIntern () {
     inquirer.prompt(interQuestions).then(internAnswers => {
         const newIntern = new Intern(internAnswers.fname, internAnswers.id, internAnswers.email, internAnswers.school)
         console.log("This is the new Intern", newIntern);
 
-        // employeeList.push(newIntern);
-        // console.log("Here is the updated Employee List", employeeList);
-        
         writeToFile ("./dist/newTeam.html", addIntern(newIntern));
     }).then (() => {
         chooseTeamMember();

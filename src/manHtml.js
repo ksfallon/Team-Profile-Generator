@@ -8,7 +8,7 @@ const Employee = require('../lib/Employee')
 
 function addManager (data) {
       console.log("Here is the const manager object", data);    
-      return `<div class="card border border-dark shadow p-3 mb-5 bg-white rounded ml-2 mr-2" style="max-width: 25rem;">
+      return `<div class="card border border-dark shadow p-3 mb-5 bg-white rounded ml-2 mr-2" style="max-width: 25rem; min-width: 22rem">
           <div class="card-body">
             <div class="card-title bg-info text-white p-3">
               <h5>${data.getName()}</h5>
