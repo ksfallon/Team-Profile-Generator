@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path')
 const inquirer = require('inquirer');
 const indexHtml = require('.././index');
 const Intern = require('../lib/Intern')

@@ -37,6 +37,9 @@ const managerQuestions = [
     }
 
 ]
+function writeToFile(fileName, data) {
+    return fs.appendFileSync(path.join(fileName), data)
+}
 
 function beginHtml() {
 const beginHtml =
@@ -59,19 +62,14 @@ const beginHtml =
 
 }
 
-beginHtml()
-
 function pushManager () {
         inquirer.prompt(managerQuestions).then(managerAnswers => {
         const manager = new Manager(managerAnswers.fname, managerAnswers.id, managerAnswers.email, managerAnswers.office)
         console.log("This is the manager const", manager);
-        employeeList.push(manager);
-        console.log("Here is the employee list", employeeList);
-    })
-    .then (() => {
-        
-    // .then (() => {
-    // managerHtml.addManager(manager);
+        // employeeList.push(manager);
+        // console.log("Here is the employee list", employeeList);
+        writeToFile ("./dist/newTeam.html", addManager(manager))
+    //  wmanagerHtml.addManager(manager);
     //fs.appendFile('./dist/team.html', mHTML, (err) => err ? console.log(err) : '')
     })
     .then (() => {
@@ -80,7 +78,6 @@ function pushManager () {
     // now send that information to engHTML.js
     // need to call on function that places this information into the html from engHTML.js
 }
-pushManager ()
 
 function chooseTeamMember () {
     inquirer.prompt([
@@ -221,3 +218,6 @@ function pushIntern () {
         chooseTeamMember();
     }).catch((err) => console.error(err));
 }
+
+beginHtml()
+pushManager ()
