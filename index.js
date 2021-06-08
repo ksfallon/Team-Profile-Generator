@@ -41,33 +41,13 @@ function writeToFile(fileName, data) {
     return fs.appendFileSync(path.join(fileName), data)
 }
 
-function beginHtml() {
-const beginHtml =
-`<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Team Page!!</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-white-50 bg-dark p-5 justify-content-center p5">
-        <a class="navbar-brand text-white-50 text-center" href="#"><h1>My Team</h1></a>
-    </nav>
-    <div class="card-group p-5" id = "add-cards">`
-    fs.writeFile("./dist/newTeam.html", beginHtml, (err) => console.error(err))
-
-}
 
 function pushManager () {
         inquirer.prompt(managerQuestions).then(managerAnswers => {
         const manager = new Manager(managerAnswers.fname, managerAnswers.id, managerAnswers.email, managerAnswers.office)
         console.log("This is the manager const", manager);
-
-        writeToFile ("./dist/newTeam.html", addManager(manager));
+        fs.writeFile("./dist/newTeam.html", addManager(manager), (err) => console.error(err))
+        // writeToFile ("./dist/newTeam.html", addManager(manager));
 
     })
     .then (() => {
@@ -181,5 +161,5 @@ function pushIntern () {
     }).catch((err) => console.error(err));
 }
 
-beginHtml()
-pushManager ()
+
+pushManager()
