@@ -12,7 +12,7 @@ function addManager (manager) {
             <div class="card-title bg-info text-white p-3">
               <h5>${manager.getName()}</h5>
               <br>
-              <h5>Manager</h5> 
+              <h5>${manager.getRole()}</h5> 
             </div>
             <ul class="list-group list-group-flush text-center border border-dark">
               <li class="list-group-item">ID: '${manager.getId()}'</li>

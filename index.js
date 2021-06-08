@@ -8,8 +8,10 @@ const Intern = require('./lib/Intern');
 const managerHtml = require('./src/manHtml');
 const internHtml = require('./src/intHtml');
 const engineerHtml = require('./src/engHtml');
-const indexHtml = require('./lib/indexHtml');
+const startHtml = require('./src/startHtml');
+const endHtml = require('./src/endHtml');
 const employeeList = [];
+
 const managerQuestions = [
 
     {
@@ -41,6 +43,9 @@ function pushManager () {
         console.log("This is the manager const", manager);
         employeeList.push(manager);
         console.log("Here is the employee list", employeeList);
+    })
+    .then (() => {
+        fs.writeToFile("./dist/newTeam.html", indexHtml)
     })
     // .then (() => {
     // managerHtml.addManager(manager);
@@ -83,11 +88,24 @@ function chooseTeamMember () {
     })
 }
 
-// function buildTeam() {
-//     writeToFile("./dist/indexTeam.html", addManager())
-//     return fs.writeFileSync(path.join("./dist/indexTeam.html"), addManager(), 
-//     ((err) => console.error(err)));
-// }
+function buildTeam() {
+    employeeList
+    for (const value of employeeList) {
+        if (value === manager) {
+            managerHtml.addManager(value);   
+        } else if (value === newEngineer) {
+            engineerHtml.addEngineer(value);
+        } else if (value === newIntern) {
+            internHtml.addIntern(value);
+        } else {
+            fs.appendFile("./dist/newTeam.html", )
+            console.log("Your team HTML file is ready!")
+        }
+    }
+    // writeToFile("./dist/indexTeam.html", addManager())
+    // return fs.writeFileSync(path.join("./dist/indexTeam.html"), addManager(), 
+    // ((err) => console.error(err)));
+}
 
 
 const engineerQuestions = [
