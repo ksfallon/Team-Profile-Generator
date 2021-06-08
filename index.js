@@ -6,9 +6,9 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const managerHtml = require('./src/manHtml');
+const startHtml = require("./src/startHtml")
 const internHtml = require('./src/intHtml');
 const engineerHtml = require('./src/engHtml');
-const startHtml = require('./src/startHtml');
 const endHtml = require('./src/endHtml');
 const employeeList = [];
 
@@ -37,6 +37,30 @@ const managerQuestions = [
     }
 
 ]
+
+function beginHtml() {
+const beginHtml =
+`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Team Page!!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-white-50 bg-dark justify-content-center">
+        <a class="navbar-brand text-white-50 text-center" href="#">My Team</a>
+    </nav>
+    <div class="card-group p-5" id = "add-cards">`
+    fs.writeFile("./dist/newTeam.html", beginHtml, (err) => console.error(err))
+
+}
+
+beginHtml()
+
 function pushManager () {
         inquirer.prompt(managerQuestions).then(managerAnswers => {
         const manager = new Manager(managerAnswers.fname, managerAnswers.id, managerAnswers.email, managerAnswers.office)
@@ -45,19 +69,17 @@ function pushManager () {
         console.log("Here is the employee list", employeeList);
     })
     .then (() => {
-        fs.writeToFile("./dist/newTeam.html", indexHtml)
-    })
+        
     // .then (() => {
     // managerHtml.addManager(manager);
     //fs.appendFile('./dist/team.html', mHTML, (err) => err ? console.log(err) : '')
-    // })
+    })
     .then (() => {
         chooseTeamMember();
     }).catch((err) => console.error(err));
     // now send that information to engHTML.js
     // need to call on function that places this information into the html from engHTML.js
 }
-
 pushManager ()
 
 function chooseTeamMember () {
@@ -81,32 +103,51 @@ function chooseTeamMember () {
         switch (chooseAnswers.job) {
             case "Engineer": pushEngineer(); break;
             case "Intern": pushIntern(); break;
-            default: "thank you!"
-            // default: buildTeam();
+            // default: "thank you!"
+            default: buildTeam();
             // need make a build team that puts all of the HTML created into the index.html file
         }
     })
 }
 
 function buildTeam() {
-    employeeList
     for (const value of employeeList) {
-        if (value === manager) {
+        if (value === Manager) {
             managerHtml.addManager(value);   
-        } else if (value === newEngineer) {
+        } 
+        else if (value === Engineer) {
             engineerHtml.addEngineer(value);
-        } else if (value === newIntern) {
+        } else if (value === Intern) {
             internHtml.addIntern(value);
-        } else {
-            fs.appendFile("./dist/newTeam.html", )
-            console.log("Your team HTML file is ready!")
-        }
+        } 
+
     }
+
+    finalHTML()
     // writeToFile("./dist/indexTeam.html", addManager())
     // return fs.writeFileSync(path.join("./dist/indexTeam.html"), addManager(), 
     // ((err) => console.error(err)));
 }
 
+function finalHTML() {
+    const finishHtml =
+`</div>
+    
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>`
+fs.appendFile("./dist/newTeam.html", finishHtml, (err) => console.error(err))
+console.log("Your team HTML file is ready!")
+}
+
+
+
+// function finalHTML () {        
+//         fs.appendFile("./dist/newTeam.html", endHtml)
+//         console.log("Your team HTML file is ready!")
+//     }
 
 const engineerQuestions = [
     {
@@ -138,7 +179,7 @@ function pushEngineer () {
 
         employeeList.push(newEngineer);
         console.log("Here is the updated Employee List", employeeList);
-   
+
     }).then (() => {
         chooseTeamMember();
     }).catch((err) => console.error(err));
@@ -180,32 +221,3 @@ function pushIntern () {
         chooseTeamMember();
     }).catch((err) => console.error(err));
 }
-
-
-// init()
-
-// const employeeQuestions = [
-//     {
-//         type: "input",
-//         name: "firstName",
-//         message: "What is your employee's first name:"
-//     },
-
-//     {
-//         type: "input",
-//         name: "id",
-//         message: "What is your  employee's ID:"
-//     },
-//     {
-//         type: "input",
-//         name: "email",
-//         message: "What is your  employee's email address:"
-//     },
-//     {
-//         type: "list",
-//         name: "job",
-//         message: "Which type of team member would you like to add?",
-//         choices: ["Engineer", "Intern", "I don't want to add anymore team members"]
-//     },
-
-// ]
