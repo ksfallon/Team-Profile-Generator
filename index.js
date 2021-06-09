@@ -42,6 +42,7 @@ function writeToFile(fileName, data) {
 }
 
 
+
 function pushManager () {
         inquirer.prompt(managerQuestions).then(managerAnswers => {
         const manager = new Manager(managerAnswers.fname, managerAnswers.id, managerAnswers.email, managerAnswers.office)

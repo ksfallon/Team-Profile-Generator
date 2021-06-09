@@ -33,7 +33,7 @@ function addManager (data) {
             </div>
             <ul class="list-group list-group-flush text-center border border-dark">
               <li class="list-group-item">ID: '${data.getId()}'</li>
-              <span>Email: <a href="${data.getEmail()}" target="_blank"class="card-link">${data.getEmail()}</a></span>
+              <span>Email: <a href="mailto:${data.getEmail()}" target="_blank" class="card-link">${data.getEmail()}</a></span>
               <li class="list-group-item">Office #: ${data.getOfficeNumber()}</li>
             </ul>
           </div>

@@ -18,7 +18,7 @@ function addIntern (data) {
         <ul class="list-group list-group-flush text-center border border-dark">
           <li class="list-group-item">ID: ${data.getId()}</li>
           <li class="list-group-item">
-              <span>Email: <a href="${data.getEmail()}" target="_blank"class="card-link">${data.getEmail()}</a></span>
+          <span>Email: <a href="mailto:${data.getEmail()}" target="_blank" class="card-link">${data.getEmail()}</a></span>
           </li>
           <li class="list-group-item"> School: ${data.getSchool()}</li>
         </ul>
