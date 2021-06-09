@@ -7,7 +7,7 @@ const Employee = require('../lib/Employee')
 
 
 function addManager (data) {
-      console.log("Here is the const manager object", data);    
+      // console.log("Here is the const manager object", data);    
       return `<!DOCTYPE html>
       <html lang="en">
       <head>

@@ -6,10 +6,8 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const addManager = require('./src/manHtml');
-// const beginHtml = require("./src/startHtml")
 const addIntern = require('./src/intHtml');
 const addEngineer = require('./src/engHtml');
-// const finishHtml = require('./src/endHtml');
 
 const managerQuestions = [
 
@@ -41,14 +39,12 @@ function writeToFile(fileName, data) {
     return fs.appendFileSync(path.join(fileName), data)
 }
 
-
-
 function pushManager () {
         inquirer.prompt(managerQuestions).then(managerAnswers => {
         const manager = new Manager(managerAnswers.fname, managerAnswers.id, managerAnswers.email, managerAnswers.office)
-        console.log("This is the manager const", manager);
+        // console.log("This is the manager const", manager);
         fs.writeFile("./dist/newTeam.html", addManager(manager), (err) => console.error(err))
-        // writeToFile ("./dist/newTeam.html", addManager(manager));
+
 
     })
     .then (() => {
@@ -72,7 +68,6 @@ function chooseTeamMember () {
             case "Intern": pushIntern(); break;
             // default: "thank you!"
             default: finalHTML();
-            // need make a build team that puts all of the HTML created into the index.html file
         }
     })
 }
@@ -118,7 +113,7 @@ const engineerQuestions = [
 function pushEngineer () {
     inquirer.prompt(engineerQuestions).then(engineerAnswers => {
     const newEngineer = new Engineer (engineerAnswers.fname, engineerAnswers.id, engineerAnswers.email, engineerAnswers.github)
-    console.log("This is the newEngineer const", newEngineer);
+    // console.log("This is the newEngineer const", newEngineer);
 
     writeToFile ("./dist/newTeam.html", addEngineer(newEngineer));
 })
@@ -154,7 +149,7 @@ const interQuestions = [
 function pushIntern () {
     inquirer.prompt(interQuestions).then(internAnswers => {
         const newIntern = new Intern(internAnswers.fname, internAnswers.id, internAnswers.email, internAnswers.school)
-        console.log("This is the new Intern", newIntern);
+        // console.log("This is the new Intern", newIntern);
 
         writeToFile ("./dist/newTeam.html", addIntern(newIntern));
     }).then (() => {
