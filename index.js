@@ -66,7 +66,6 @@ function chooseTeamMember () {
         switch (chooseAnswers.job) {
             case "Engineer": pushEngineer(); break;
             case "Intern": pushIntern(); break;
-            // default: "thank you!"
             default: finalHTML();
         }
     })
