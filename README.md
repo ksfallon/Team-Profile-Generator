@@ -81,3 +81,6 @@ The tests, like the classes, are straightforward but are necessary to make sure 
 [Demo for Tests and HTML generator with node js](https://youtu.be/0n3hnycPa3c)
 
 [Demo of HTML generated with node js](https://youtu.be/RtfGkWZ-p5U)
+
+
+Licensed under the [MIT License](https://choosealicense.com/licenses/mit/#).
