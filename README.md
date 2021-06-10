@@ -7,7 +7,7 @@
 3. [Tests for Classes](#tests)
 4. [HTML.js Templates for Employees](#templates)
 4. [newTeam.html created in project](#new-team-html)
-3. [Video of creating the newTeam.html](#video-of-newTeam.html)
+3. [Video of creating the newTeam.html](#video-of-newTeam-html)
 
 ## Overview
 
@@ -76,7 +76,7 @@ The tests, like the classes, are straightforward but are necessary to make sure 
 - Here is a screen shot of the newTeam.html that is produced with this app. The email links open a mail app with the team members email in the to: area and the github link(s) for the engineer(s) are linked to open in another webpage to their specific GitHub page.
 
 ![NewTeam](https://github.com/ksfallon/Team-Profile-Generator/blob/main/images/newTeam.html.png)
-## Video of newTeam.html
+## Video of newTeam HTML
 
 [Demo for Tests and HTML generator with node js](https://youtu.be/0n3hnycPa3c)
 
