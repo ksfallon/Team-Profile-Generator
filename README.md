@@ -11,7 +11,7 @@
 
 ## Overview
 
-- Our task is the create an application that builds a website with profiles of a software engineering team. We must use node.js to create it and we will use npm Inquirer to collect user input to build the site. We will use the module fs to create paths between js files, so functions from different pages can communicate. The path module is used to connect files and directory paths.
+- Our task is the create an application that builds a website with profiles of a software engineering team. We must use node.js to create it and we will use npm Inquirer to collect user input to build the site. We will use the module fs to create paths between js files, so functions from different pages can communicate. The path module is used to connect files and directory paths. And finally jest is used to run the tests.
 - We were not given starter code for this project. But we were given suggestions for folders to create to help us separate the different files we would need to create.
 
 
@@ -33,10 +33,10 @@ Our classes were relatively straightforward, but we needed to make sure three of
 3. Finally, at the end of each JS file the class is exported so it can be used in the other JS files and also in the tests. *module.exports* can be used to export a class such as these four, but it can also be used to export specific functions which is what I did to create the temporal literals. Module.exports is set equal to the class names or the functions so they can be called on by other files.
 
 ## Tests
-The tests, like the classes, are straightforward but are necessary to make sure the functions within the classes are working properly.
+The tests, like the classes, are straightforward but are necessary to make sure the functions within the classes are working properly. The jest npm had to be installed to run these tests.
 
 1.	I created the tests first for the **Employee** class. I needed to require the Employee class js file to be able to run the files within it.
-2.	Since the functions are all within the class I’m going to use the *describe(name,fn)* to create a block with functions within it. All of the functions are based off of the class parameters so it makes sense to encase the tests withing a main test block. In the describe section the main test states “Employee class includes all methods” to explain that all of the tests are within the class **Employee**. 
+2.	Since the functions are all within the class it makes sense to use jest 's *describe(name,fn)* to create a block with functions within it. All of the functions are based off of the class parameters so it makes sense to encase the tests withing a main test block. In the describe section the main test states “Employee class includes all methods” to explain that all of the tests are within the class **Employee**. 
 3.	Within the Describe the first thing is I call a newEmployee const which equals new Employee with (name = “Pam” , id = 2, email = “pam@aol.com”). By calling it at the beginning I can reference it in the four methods/functions I’m using to test the functions within **Employee** class. 
 4.	Three of the four methods I created call on the *newEmployee* const and test the function that is connected to that parameter. Here is an example:
 
