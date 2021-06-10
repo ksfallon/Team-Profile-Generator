@@ -75,7 +75,7 @@ The tests, like the classes, are straightforward but are necessary to make sure 
 ## New Team Html
 - Here is a screen shot of the newTeam.html that is produced with this app. The email links open a mail app with the team members email in the to: area and the github link(s) for the engineer(s) are linked to open in another webpage to their specific GitHub page.
 
-![NewTeam]()
+![NewTeam](https://github.com/ksfallon/Team-Profile-Generator/blob/main/images/newTeam.html.png)
 ## Video of newTeam.html
 
 [Demo for Tests and HTML generator with node js](https://youtu.be/0n3hnycPa3c)
